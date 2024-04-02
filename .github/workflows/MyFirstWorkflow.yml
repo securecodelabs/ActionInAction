@@ -38,6 +38,10 @@ jobs:
           echo "Tag source: ${{ inputs.tag }}"
         name: Workflow Inputs
         if: ${{ github.event_name == 'workflow_dispatch' }}
+      - run: |
+          echo "Payload: ${{ toJSON(github.event.client_payload) }}"
+        name: Payload
+        if: ${{ github.event_name == 'repository_dispatch' }}
       - run: echo "👋 Hello World!"
       - name: Checkout
         uses: actions/checkout@v4.1.2
